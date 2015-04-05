@@ -1,7 +1,7 @@
 #ifndef PLANE_H
 #define PLANE_H
 
-#include "AP_GenEKF/ekfilter.hpp"
+#include "ekfilter.hpp"
 
 
 class cPlaneEKF : public Kalman::EKFilter<double,1,false,true,false> {

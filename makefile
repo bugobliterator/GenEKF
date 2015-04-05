@@ -1,25 +1,20 @@
 TARGET := kalmantest
 DEBUG_FLAG := no
 
-INCLUDE_DIR := -I`pwd`
+LIB_INSTALL_PATH := /usr/local/lib
+INC_INSTALL_PATH := /usr/local/include
+
+INCLUDE_DIR := -IAP_GenEKF/
 
 # Define a variable for each type of files
 SOURCES := $(wildcard */*.cpp)
+SOURCES += $(wildcard *.cpp)
 ALLSOURCES := $(SOURCES)
-ALLSOURCES += $(wildcard */*.h*)
-ALLFILES := $(ALLSOURCES) makefile
-OBJECTS := $(SOURCES:.cpp=.o)
+ALLSOURCES += $(wildcard *.h*)
 
 # Define a variable for each command
 CXX := g++
-AR := ar
 RM := rm -f
-TAR := tar czf
-UNIX2DOS := unix2dos
-DOS2UNIX := dos2unix
-UPDATE := cvs update
-COMMIT := cvs commit
-INSTALL := install
 
 # Define conditional flags
 WARNING_FLAGS := -Wall -W -Wfloat-equal -Winline -Wno-deprecated
@@ -32,21 +27,14 @@ else
 endif
 
 CXXFLAGS := $(WARNING_FLAGS) $(OTHER_FLAGS) $(INCLUDE_DIR)
+
+
 # Define main target
-$(TARGET) : %.o
-	$(CXX) -r $@ $^
-
-# Define some rules
-%.o : $(ALLSOURCES)
-	$(CXX) -c $(CXXFLAGS) -o $@ $< 
-
+$(TARGET) : $(SOURCES)
+	$(CXX) $(INCLUDE_DIR) -o $@ $^
 
 # Define some commands
-.PHONY : clean toDos toUnix cvs archive install doc develdoc samples
+.PHONY : clean
 
 clean :
-	$(RM) $(OBJECTS) $(TARGET) *~ kalman/*~
-
-
-# Define dependencies
-kstatics.o : $(ALLSOURCES)
+	$(RM) $(OBJECTS) $(TARGET)

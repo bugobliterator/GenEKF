@@ -57,8 +57,8 @@ int main() {
 	Vector F(NTRY);
 	Matrix Measure(m,NTRY);
 
-	dataInput.open("../Matlab/data.m",ifstream::in);
-	dataOutput.open("../Matlab/trajectory_udu_load.m", ofstream::out | ofstream::trunc);
+	dataInput.open("Matlab/data.m",ifstream::in);
+	dataOutput.open("Matlab/trajectory_udu_load.m", ofstream::out | ofstream::trunc);
 
 	if (dataInput.fail())
 	{

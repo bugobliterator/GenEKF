@@ -30,7 +30,7 @@
 //! \file
 //! \brief Contains the interface of the \c KFilter base template class.
 
-#include "kalman/ekfilter.hpp"
+#include "ekfilter.hpp"
 
 namespace Kalman {
 
@@ -114,6 +114,6 @@ namespace Kalman {
 
 }
 
-#include "kalman/kfilter_impl.hpp"
+#include "kfilter_impl.hpp"
 
 #endif
