@@ -1,9 +1,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include <xmmintrin.h>      //floating point exception for nan only for mac osx
 
 #include <cmath>
-
 // Example of Extented Kalman Filter
 #include "BattEKF.h"
 
@@ -35,7 +35,7 @@ int main() {
     ifstream dataInput;
     ofstream dataOutput;
     std::string tmpStr;
-
+    _MM_SET_EXCEPTION_MASK(_MM_GET_EXCEPTION_MASK() & ~_MM_MASK_INVALID);       //enable floating point nan exception for nan only for mac osx
     const unsigned NTRY = 500;
     const unsigned n = 3;    //nb states
     const unsigned m = 2;    //nb measures
