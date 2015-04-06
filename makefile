@@ -1,5 +1,5 @@
-TARGET := kalmantest
-DEBUG_FLAG := no
+TARGET := kalmantest.elf
+DEBUG_FLAG := yes
 
 LIB_INSTALL_PATH := /usr/local/lib
 INC_INSTALL_PATH := /usr/local/include
