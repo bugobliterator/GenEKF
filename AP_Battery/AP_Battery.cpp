@@ -55,7 +55,7 @@ int main() {
     Matrix Measure(m,NTRY);
 
     dataInput.open("Matlab/data.m",ifstream::in);
-    dataOutput.open("Matlab/trajectory_udu_load.m", ofstream::out | ofstream::trunc);
+    dataOutput.open("Matlab/battery_load.m", ofstream::out | ofstream::trunc);
 
     if (dataInput.fail())
     {
@@ -111,7 +111,7 @@ int main() {
 
     cout << "xp(" << ":," << i<<") = " << filter.getX()<<endl;
 
-    dataOutput<<"trajectory_udu(" << ":," << i <<") = " << filter.getX()<<endl;
+    dataOutput<<"battery(" << ":," << i <<") = " << filter.getX()<<endl;
 
     for (i = 2; i <= NTRY; ++i) 
     {
@@ -126,7 +126,7 @@ int main() {
         filter.step(u, z);
 
         cout << "voltage:" << filter.getX()(1) << "\t\tcurrent:" << filter.getX()(2) <<"\t\tinternal resistance:" << filter.getX()(3)<<endl;
-        dataOutput<<"trajectory_udu(" << ":," << i<<") = " << filter.getX()<<endl;
+        dataOutput<<"battery(" << ":," << i<<") = " << filter.getX()<<endl;
     }
 
 
