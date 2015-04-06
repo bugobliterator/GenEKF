@@ -31,7 +31,7 @@ CXXFLAGS := $(WARNING_FLAGS) $(OTHER_FLAGS) $(INCLUDE_DIR)
 
 # Define main target
 $(TARGET) : $(SOURCES)
-	$(CXX) $(INCLUDE_DIR) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 # Define some commands
 .PHONY : clean

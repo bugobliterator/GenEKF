@@ -5,7 +5,7 @@
 #include <cmath>
 
 // Example of Extented Kalman Filter
-#include "plane.h"
+#include "BattEKF.h"
 
 using namespace std;
 using namespace Kalman;
@@ -44,12 +44,11 @@ int main() {
 	selectKVectorContext(createKVectorContext(" ", "[ ", " ];", 4));
 	selectKMatrixContext(createKMatrixContext(" ", " ;\n  ", "[ ", " ];", 4));
 
-	cPlaneEKF filter;
+	BattEKF filter;
 
-	static const double _P0[] = {100.0*100.0, 0.0, 0.0, 0.0,
-								 0.0, 10.0*10.0, 0.0, 0.0,
-								 0.0, 0.0, 25.0*25.0, 0.0,
-								 0.0, 0.0, 0.0, 10.0*10.0}; 
+	static const double _P0[] = {   sq(20),   0   ,  0   ,
+            						0     ,  sq(1),  0   ,
+            					    0     ,   0   , sq(0.2)}; 
 
 	Vector x(n);
 	Matrix P0(n, n, _P0);
@@ -105,11 +104,10 @@ int main() {
 	Vector z(m);
 
 	//Initiale estimate
-	cout<<"angle: "<<Measure(1,1)<<"rayon: "<<Measure(2,1)<<endl;
-	x(1) = cos(Measure(1,1))*Measure(2,1);
-	x(2) = 60;
-	x(3) = sin(Measure(1,1))*Measure(2,1);
-	x(4) = 0;
+	cout<<"voltage: "<<Measure(2,1)<<"current: "<<Measure(1,1)<<endl;
+	x(1) = 0.0;
+	x(2) = 0.0;
+	x(3) = 0.0;
 
 	filter.init(x, P0);
 
@@ -120,10 +118,9 @@ int main() {
 	for (i = 2; i <= NTRY; ++i) 
 	{
 		// filter
-		for(j = 1; j <= m; j++)
-			z(j) = Measure(j,i);
-
-		Vector u(1, F(i));
+		z(1) = Measure(2,i);
+		z(2) = Measure(1,i);
+		Vector u(3, 0.0);
 
 		filter.step(u, z);
 
