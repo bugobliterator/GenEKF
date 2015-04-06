@@ -7,20 +7,20 @@
 
 class BattEKF : public Kalman::EKFilter<double,1,false,true,false> {
 public:
-	BattEKF();
+    BattEKF();
 
 protected:
-	void makeBaseA();
-	void makeBaseW();
-	void makeBaseV();
-	void makeBaseR();
+    void makeBaseA();
+    void makeBaseW();
+    void makeBaseV();
+    void makeBaseR();
 
-	void makeH();
-	void makeQ();
-	void makeProcess();
-	void makeMeasure();
+    void makeH();
+    void makeQ();
+    void makeProcess();
+    void makeMeasure();
 
-	uint32_t dt;
+    uint32_t dt;
 };
 
 typedef BattEKF::Vector Vector;

@@ -833,7 +833,7 @@ namespace Kalman {
 //! \f[ \vec x_k = f \left( x_{k-1}, u_{k-1}, w_{k-1} \right) \f]
 //! where \f$ w \f$ is the process noise vector due to uncertainty and process modeling errors.
 //! 
-//!	Then, find the non-linear relation between your state vector \f$ \vec x \f$ and the measure vector \f$ \vec z \f$.
+//!    Then, find the non-linear relation between your state vector \f$ \vec x \f$ and the measure vector \f$ \vec z \f$.
 //! \f[ \vec z_k = h \left( x_{k-1}, v_{k-1} \right) \f]
 //! where \f$ v \f$ is the measure noise vector.
 //!
